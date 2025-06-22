@@ -1,0 +1,9 @@
+<div class="menu-list">
+  <div
+    *ngFor="let item of menu$ | async"
+    (click)="onClick(item)"
+    [class.active]="(selectedItemId$ | async) === item.id"
+  >
+    {{ item.label }}
+  </div>
+</div>

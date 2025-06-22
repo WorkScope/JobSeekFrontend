@@ -1,1 +1,23 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="assets/logo/logo.png" alt="Logo" class="logo-img" />
+    </div>
+
+    <app-navigation-menu></app-navigation-menu>
+
+    <div class="header-actions">
+      <button class="action-btn cart-btn">
+        <mat-icon fontIcon="home"></mat-icon>
+        <span class="cart-count">3</span>
+      </button>
+
+      <button class="action-btn">
+        <mat-icon>favorite</mat-icon>
+      </button>
+
+      <!-- <app-user-menu></app-user-menu> -->
+    </div>
+  </div>
+</header>
