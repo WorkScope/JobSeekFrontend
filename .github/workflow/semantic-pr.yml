@@ -2,10 +2,12 @@ name: Check PR title format
 
 on:
   pull_request:
-    types: [opened, edited, reopened, synchronize]
+    branches: [main] 
 
 jobs:
   validate-title:
+    name: Check PR title format ✅  
+
     runs-on: ubuntu-latest
     steps:
       - name: Validate PR title starts with `feat:`, `fix:`, etc.
