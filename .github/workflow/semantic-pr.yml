@@ -1,0 +1,17 @@
+name: Check PR title format
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  validate-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title starts with `feat:`, `fix:`, etc.
+        run: |
+          echo "Checking title: '${{ github.event.pull_request.title }}'"
+          echo "${{ github.event.pull_request.title }}" | grep -E '^(?:\[[A-Z]{2,3}-[0-9]+\] )?(feat|fix|chore|docs|style|refactor|test|perf): .+' || {
+            echo "❌ ERROR: PR title must start with 'feat:', 'fix:', etc."
+            exit 1
+          }
