@@ -7,6 +7,7 @@ on:
 jobs:
   validate-title:
     name: Check PR title format ✅  
+
     runs-on: ubuntu-latest
     steps:
       - name: Validate PR title starts with `feat:`, `fix:`, etc.
