@@ -1,9 +1,32 @@
 <div class="menu-list">
-  <div
-    *ngFor="let item of menu$ | async"
-    (click)="onClick(item)"
-    [class.active]="(selectedItemId$ | async) === item.id"
-  >
-    {{ item.label }}
-  </div>
+  <ng-container *ngFor="let item of menu$ | async; let i = index">
+    <div
+      [matMenuTriggerFor]="item.children ? childMenu : null"
+      #trigger="matMenuTrigger"
+      (mouseenter)="onMouseEnter(item, i)"
+      (mouseleave)="onMouseLeave(item, i,$event)"
+    >
+      <button
+        mat-button
+        class="menu-list-item"
+        (click)="onTriggerClick(item, $event)"
+        [class.active]="(selectedItemId$ | async) === item.id"
+      >
+        {{ item.label }}
+        <span *ngIf="item.children" class="arrow">▶</span>
+      </button>
+    </div>
+
+    <mat-menu #childMenu="matMenu" [hasBackdrop]="false">
+      <button
+        mat-menu-item
+        *ngFor="let child of item.children"
+        (click)="onChildClick(child, $event)"
+        [class.active]="(selectedItemId$ | async) === child.id"
+        (mouseleave)="onMouseLeave(child, i, $event)"
+      >
+        {{ child.label }}
+      </button>
+    </mat-menu>
+  </ng-container>
 </div>
